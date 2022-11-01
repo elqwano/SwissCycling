@@ -2,6 +2,8 @@
 
 SwissCycling est un planificateur d'itinéraires vélo en Suisse.
 
+Le classe main de l'application est /src/ch/epfl/javelo/gui/JaVelo.java
+
 L'interface de JaVelo est similaire à celle de planificateurs en ligne comme Google Maps. JaVelo n'est toutefois pas une application Web — qui s'exécute en partie dans le navigateur et en partie sur un serveur distant —, mais bien une application Java qui s'exécute exclusivement sur l'ordinateur de la personne qui l'utilise.
 
 Comme d'habitude dans ce genre de programmes, il est possible de déplacer, agrandir ou réduire la carte au moyen de la souris.
