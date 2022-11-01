@@ -32,6 +32,10 @@ import java.util.function.Consumer;
 public final class JaVelo extends Application {
     private final static int MINWIDTH = 800;
     private final static int MINHEIGHT = 600;
+    private final static String DATA_REP = "javelo-data";
+    private final static String OSM_CACHE = "osm-cache" ;
+    private final static String TILE_SERVER = "tile.openstreetmap.org";
+    private final static String TITLE = "SwissCycling";
 
     public static void main(String[] args) {
         launch(args);
@@ -43,13 +47,13 @@ public final class JaVelo extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Graph graph = Graph.loadFrom(Path.of("javelo-data"));
+        Graph graph = Graph.loadFrom(Path.of(DATA_REP));
         CityBikeCF costFunction = new CityBikeCF(graph);
         RouteComputer routeComputer = new RouteComputer(graph, costFunction);
         RouteBean routeBean = new RouteBean(routeComputer);
 
-        Path cacheBasePath = Path.of("osm-cache");
-        String tileServerHost = "tile.openstreetmap.org";
+        Path cacheBasePath = Path.of(OSM_CACHE);
+        String tileServerHost = TILE_SERVER;
         TileManager tileManager = new TileManager(cacheBasePath, tileServerHost);
 
         ErrorManager errorManager = new ErrorManager();
@@ -99,7 +103,7 @@ public final class JaVelo extends Application {
                 .then(annotatedMapManager.mousePositionOnRouteProperty())
                 .otherwise(elevationProfileManager.mousePositionOnProfileProperty()));
 
-        primaryStage.setTitle("JaVelo");
+        primaryStage.setTitle(TITLE);
         primaryStage.setMinWidth(MINWIDTH);
         primaryStage.setMinHeight(MINHEIGHT);
         primaryStage.setScene(new Scene(borderPane));
